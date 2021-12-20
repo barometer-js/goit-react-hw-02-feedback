@@ -2,12 +2,13 @@ import React, { Component, Fragment } from 'react';
 import 'normalize.css';
 import './App.css';
 import Section from './components/Section/Section';
+import Statistics from './components/Statistics';
 
 class App extends Component {
   state = {
-    good: 10,
-    neutral: 2,
-    bad: 2,
+    good: 0,
+    neutral: 0,
+    bad: 0,
   };
 
   countTotalFeedback = () => {
@@ -15,35 +16,41 @@ class App extends Component {
   };
 
   countPositiveFeedbackPercentage = () => {
-    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
+    return this.countTotalFeedback()
+      ? Math.round((this.state.good / this.countTotalFeedback()) * 100)
+      : 0;
   };
 
-  addFeedback = () => {
-    console.log(this.button);
-    // switch (this.button.value) {
-    //   case 'Good':
-    //     this.setState(prevState => ({ good: prevState.good + 1 }));
-    //     break;
-
-    //   case 'Neutral':
-    //     this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-    //     break;
-
-    //   case 'Bad':
-    //     this.setState(prevState => ({ bad: prevState.bad + 1 }));
-    //     break;
-
-    //   default:
-    //     console.log('Invalid subscription type');
-    // }
+  addFeedback = e => {
+    switch (e.target.textContent) {
+      case 'Good':
+        this.setState(prevState => ({ good: prevState.good + 1 }));
+        break;
+      case 'Neutral':
+        this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
+        break;
+      case 'Bad':
+        this.setState(prevState => ({ bad: prevState.bad + 1 }));
+        break;
+      default:
+        console.log('Invalid subscription type');
+    }
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
+
     return (
       <Fragment>
         <Section>
           <h1>Please leave feedback</h1>
-          <button type="button" onClick={this.addFeedback}>
+          {/* <FeedbackOptions options={} onLeaveFeedback={} /> */}
+          <button
+            type="button"
+            onClick={е => {
+              this.addFeedback(е);
+            }}
+          >
             Good
           </button>
           <button type="button" onClick={this.addFeedback}>
@@ -52,14 +59,13 @@ class App extends Component {
           <button type="button" onClick={this.addFeedback}>
             Bad
           </button>
-          <h2>Statistics</h2>
-          <ul>
-            <li>{`Good: ${this.state.good}`}</li>
-            <li>{`Neutral: ${this.state.neutral}`}</li>
-            <li>{`Bad: ${this.state.bad}`}</li>
-            <li>{`Total: ${this.countTotalFeedback()}`}</li>
-            <li>{`Positive feedback: ${this.countPositiveFeedbackPercentage()}%`}</li>
-          </ul>
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
         </Section>
       </Fragment>
     );
