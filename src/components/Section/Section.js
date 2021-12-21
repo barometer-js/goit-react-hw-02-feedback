@@ -3,10 +3,10 @@ import './Section.scss';
 
 function Section({ children, title }) {
   return (
-    <div className="section">
-      {title && <h1 className="title">{title}</h1>}
+    <section className="section">
+      {title && <h2 className="title">{title}</h2>}
       {children}
-    </div>
+    </section>
   );
 }
 Section.propTypes = {
