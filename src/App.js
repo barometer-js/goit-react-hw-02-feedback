@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import 'normalize.css';
-import './App.css';
 import Section from './components/Section';
 import Statistics from './components/Statistics';
 import FeedbackOptions from './components/FeedbackOptions';
@@ -62,7 +61,7 @@ class App extends Component {
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
           ) : (
-            <Notification message="there is no feedback" />
+            <Notification message="There is no feedback" />
           )}
         </Section>
       </Fragment>

@@ -1,0 +1,19 @@
+.btn {
+  background-color: darkolivegreen;
+  color: aliceblue;
+  padding: 2px 10px;
+  border-style: inherit;
+  border-color: darkolivegreen;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:first-letter {
+    font-weight: 700;
+    text-transform: capitalize;
+    color: rgb(172, 140, 34);
+    font-size: 130%;
+  }
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}
