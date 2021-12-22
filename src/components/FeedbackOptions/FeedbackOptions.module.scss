@@ -6,6 +6,11 @@
   border-color: darkolivegreen;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.71);
+
+  &:hover {
+    box-shadow: 6px 6px 5px 3px rgba(0, 0, 0, 0.5);
+  }
 
   &:first-letter {
     font-weight: 700;
@@ -15,5 +20,10 @@
   }
   &:not(:last-child) {
     margin-right: 5px;
+  }
+
+  &:active {
+    background-color: rgb(53, 71, 20);
+    transition: background-color 100ms;
   }
 }
